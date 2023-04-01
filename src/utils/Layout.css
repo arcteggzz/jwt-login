@@ -1,0 +1,26 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.nav_container {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.link {
+  padding: 16px 20px;
+  background-color: aqua;
+}
+
+.container main {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
