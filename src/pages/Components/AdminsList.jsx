@@ -1,43 +1,23 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "../../api/axios";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 function AdminsList() {
   const [admins, setAdmins] = useState();
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   //use axios to fetch all admins
   //note you can use axios here because it's not a protected route
-  useEffect(() => {
-    let isMounted = true;
-    // const controller = new AbortController();
-
-    const getAdmins = async () => {
-      try {
-        const response = await axios.get("/admins");
-        console.log(response.data);
-        isMounted && setAdmins(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getAdmins();
-
-    return () => {
-      isMounted = false;
-      // controller.abort();
-    };
-  }, []);
-
-  //use axios Private for routes that are protected
   // useEffect(() => {
   //   let isMounted = true;
   //   // const controller = new AbortController();
 
   //   const getAdmins = async () => {
   //     try {
-  //       const response = await axiosPrivate.get("/admins");
+  //       const response = await axios.get("/admins");
   //       console.log(response.data);
   //       isMounted && setAdmins(response.data);
   //     } catch (e) {
@@ -52,6 +32,29 @@ function AdminsList() {
   //     // controller.abort();
   //   };
   // }, []);
+
+  //use axios Private for routes that are protected
+  useEffect(() => {
+    let isMounted = true;
+    // const controller = new AbortController();
+
+    const getAdmins = async () => {
+      try {
+        const response = await axiosPrivate.get("/admins");
+        isMounted && setAdmins(response.data);
+      } catch (e) {
+        console.log(e);
+        navigate("/login", { state: { from: location }, replace: true });
+      }
+    };
+
+    getAdmins();
+
+    return () => {
+      isMounted = false;
+      // controller.abort();
+    };
+  }, []);
 
   return (
     <>

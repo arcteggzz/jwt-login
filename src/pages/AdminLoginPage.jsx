@@ -28,7 +28,6 @@ function AdminLoginPage() {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response.data));
       //save the user login into the auth state
       setAuth(response.data);
       navigate(from, { replace: true });
