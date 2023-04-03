@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../utils/Layout";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
@@ -9,7 +9,7 @@ const LOGIN_URL = "/auth";
 function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
-  const { setAuth } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth();
 
   //these are needed to control the forward navigation
   //basically take the user to where he is comming from when before he got redirected to the login page because he was not logged in
@@ -35,6 +35,14 @@ function AdminLoginPage() {
       console.log(err);
     }
   };
+
+  const togglePersist = () => {
+    setPersist((prev) => !prev);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist]);
 
   return (
     <>
@@ -71,6 +79,16 @@ function AdminLoginPage() {
               <button className="" type="submit">
                 Sign in
               </button>
+
+              <div>
+                <input
+                  type="checkbox"
+                  id="persist"
+                  onChange={togglePersist}
+                  checked={persist}
+                />
+                <label htmlFor="persist">Trust this device?</label>
+              </div>
             </form>
           }
         />
