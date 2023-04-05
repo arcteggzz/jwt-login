@@ -13,14 +13,14 @@ function Layout({ children }) {
           <Link to="/random-public-page" className="link">
             Random PG
           </Link>
+          <Link to="/signup" className="link">
+            CreateAccount
+          </Link>
           <Link to="/login" className="link">
-            Login
+            AdminLogin
           </Link>
           <Link to="/dashboard" className="link">
             Dashboard
-          </Link>
-          <Link to="/signup" className="link">
-            SignUp
           </Link>
         </nav>
         <main>{children}</main>

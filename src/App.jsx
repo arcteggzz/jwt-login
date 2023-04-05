@@ -16,15 +16,15 @@ const App = () => {
         {/* public routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<AdminLoginPage />} />
+        <Route path="/signup" element={<AdminSignUpPage />} />
+        {/* view all players on this random public page */}
         <Route path="/random-public-page" element={<RandomPublicPage />} />
 
         {/* private routes */}
-
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />}>
             {/* Display list of admins on the mongo database on this page */}
             <Route path="/dashboard" element={<AdminDashboardPage />} />
-            <Route path="/signup" element={<AdminSignUpPage />} />
           </Route>
         </Route>
       </Routes>
