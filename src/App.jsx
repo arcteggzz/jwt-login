@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import RequireAuth from "./utils/RequireAuth";
 import RandomPublicPage from "./pages/RandomPublicPage";
 import PersistLogin from "./utils/PersistLogin";
+import AdminUpdatePassword from "./pages/AdminUpdatePassword";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />}>
             {/* Display list of admins on the mongo database on this page */}
+            <Route path="/update-password" element={<AdminUpdatePassword />} />
             <Route path="/dashboard" element={<AdminDashboardPage />} />
           </Route>
         </Route>

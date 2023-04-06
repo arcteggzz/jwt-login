@@ -29,6 +29,7 @@ function AdminLoginPage() {
         }
       );
       //save the user login into the auth state
+      // console.log(response.data);
       setAuth(response.data);
       navigate(from, { replace: true });
     } catch (err) {

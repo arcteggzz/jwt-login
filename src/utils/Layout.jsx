@@ -22,6 +22,9 @@ function Layout({ children }) {
           <Link to="/dashboard" className="link">
             Dashboard
           </Link>
+          <Link to="/update-password" className="link">
+            UpdatePassword
+          </Link>
         </nav>
         <main>{children}</main>
       </div>
